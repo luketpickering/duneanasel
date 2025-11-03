@@ -2,7 +2,7 @@
 
 #include "duneanaobj/StandardRecord/SRInteraction.h"
 
-#include "duneanasel/common/type_traits.hxx"
+#include "duneanasel/common/type_traits.h"
 
 namespace sel {
 namespace beam {
@@ -32,7 +32,8 @@ inline bool InFV(T const &fd_int) {
 
 namespace numode {
 
-// Motivating analysis in jupyter notebook in this repository @ /examples/cut_optimization/fd/VDFDToySelections.ipynb
+// Motivating analysis in jupyter notebook in this repository @
+// /examples/cut_optimization/fd/VDFDToySelections.ipynb
 template <typename T, typename C = Proxyable_t<caf::SRInteraction, T>>
 inline bool NuMuCCLike(T const &fd_int) {
 
@@ -56,6 +57,10 @@ inline bool NCLike(T const &fd_int) {
 
 template <typename T, typename C = Proxyable_t<caf::SRInteraction, T>>
 inline sel::beam::Sample ApplySelection(T const &fd_int) {
+
+  if (!sel::beam::fd1x8x6::InFV(fd_int)) {
+    return sel::beam::kRejected;
+  }
 
   if (sel::beam::fd1x8x6::numode::NuMuCCLike(fd_int)) {
     return sel::beam::kNuMuCCLike;

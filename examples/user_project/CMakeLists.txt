@@ -3,7 +3,9 @@ cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 project(duneanauserexample VERSION 0.0.1 LANGUAGES CXX)
 
- include(FetchContent)
+include(FetchContent)
+
+SET(duneanasel_USE_SRProxy ON)
 
 FetchContent_Declare(
   duneanasel

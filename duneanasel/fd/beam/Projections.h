@@ -6,7 +6,8 @@
 
 namespace proj::beam::fd1x8x6 {
 
-inline float ENuReco(caf::SRInteraction const &fd_int, sel::beam::Sample smpl) {
+template <typename T, typename C = Proxyable_t<caf::SRInteraction, T>>
+inline float ENuReco(T const &fd_int, sel::beam::Sample smpl) {
   switch (smpl) {
   case sel::kRejected:
     return std::numeric_limits<float>::quiet_NaN();

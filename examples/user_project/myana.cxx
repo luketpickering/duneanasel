@@ -20,6 +20,8 @@ int main(int argc, char const *argv[]) {
     pch.GetEntry(i);
 
     //analysis goes here
+    double test = 5;
+    sel::beam::fd1x2x6::InFV(test);
 
   }
 }
