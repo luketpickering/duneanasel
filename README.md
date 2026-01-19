@@ -147,4 +147,4 @@ An example of an empty analysis loop exectuable with a minimal CMake build syste
 
 ### Fiducial volume cuts and summary files for analysis software
 
-Another example of using the `SRProxy` python bindings (`pySRProxy`). This example applies some cuts with `pandas` and then outputs a root file using `uproot` that could be used as input to the[MaCh3](https://github.com/mach3-software/MaCh3) analysis software. 
+Another example of using the `SRProxy` python bindings (`pySRProxy`). This example applies some cuts with `pandas` and then outputs a root file using `uproot` that could be used as input to the [MaCh3](https://github.com/mach3-software/MaCh3) analysis software.
