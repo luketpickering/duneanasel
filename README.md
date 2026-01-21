@@ -136,10 +136,18 @@ the buildsystem exists to check if dependencies are built and optionally build t
 [`duneanaobj`](https://github.com/DUNE/duneanaobj). A few configuration options exist depending on how
 you want to find/build `duneanaobj`:
 
-* `cmake .. -Dduneanasel_USE_UPS_duneanaobj=ON`: will try and use duneanaobj/SRProxy from a set up UPS distribution.
-* `cmake .. [-Dduneanasel_USE_SRProxy=ON]`: enabled by default, this will set up or build the clingified version of duneanaobj.
-* `cmake .. -Dduneanasel_USE_SRProxy=OFF [-DDUNE_ANAOBJ_BRANCH=v03_06_01]`:  This will build just the StandardRecord class from a specified version of duneanaobj. It will not build SRProxy for you and so no `caf::Proxy` instances can be used.
-
+* `cmake .. -Dduneanasel_USE_UPS_duneanaobj=ON`:
+  Will try and use duneanaobj/SRProxy from a set up UPS distribution.
+* `cmake .. [-Dduneanasel_USE_SRProxy=ON] [-Dduneanasel_SRProxy_PYTHON_ENABLED=OFF]`:
+  Enabled by default, this will set up or build the clingified version of
+  duneanaobj. Optionally `StandardRecord` python binding generation can be
+  enabled. You will have to manually add `<prefix>/python/<pyversion maj>.<min>`
+  to `PYTHONPATH` and `<prefix>lib` to `LD_LIBRARY_PATH=` to enable
+  `python3 -c "import pySRProxy"`.
+* `cmake .. -Dduneanasel_USE_SRProxy=OFF [-DDUNE_ANAOBJ_BRANCH=v03_06_01]`:
+  This will build just the `StandardRecord` class from a specified version of
+  duneanaobj. It will not build SRProxy for you and so no `caf::Proxy` instances
+  can be used.
 
 ## Example Usage
 
