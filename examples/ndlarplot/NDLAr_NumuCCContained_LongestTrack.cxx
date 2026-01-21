@@ -13,7 +13,9 @@ int main(int argc, char const *argv[]) {
 
   TChain ch("cafTree");
 
-  ch.Add(argv[1]);
+  for(int i = 1; i < argc; ++i){
+    ch.Add(argv[i]);
+  }
 
   caf::StandardRecord *SR = nullptr;
   ch.SetBranchAddress("rec", &SR);
