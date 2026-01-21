@@ -47,7 +47,7 @@ if(duneanasel_USE_SRProxy)
   endif()
 
   if(NOT TARGET duneanaobj::all)
-    cmessage(FATAL_ERROR "duneanasel Expected dependency target: duneanaobj::all")
+    message(FATAL_ERROR "duneanasel Expected dependency target: duneanaobj::all")
   endif()
 else()
   if(NOT DEFINED DUNE_ANAOBJ_BRANCH OR "${DUNE_ANAOBJ_BRANCH}x" STREQUAL "x")
