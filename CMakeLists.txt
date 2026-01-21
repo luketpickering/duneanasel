@@ -34,7 +34,7 @@ find_package(ROOT 6 REQUIRED)
 
 find_package(duneanaobj QUIET)
 
-if(duneanaobj_FOUND AND TARGET duneanaobj::StandardRecordProxy) # use UPS by default
+if(NOT duneanasel_USE_SRProxy AND duneanaobj_FOUND AND TARGET duneanaobj::StandardRecordProxy) # use UPS by default
   message(STATUS "Found duneanaobj in ${duneanaobj_SOURCE}.")
   add_library(duneanaobj_all INTERFACE)
   target_link_libraries(duneanaobj_all INTERFACE duneanaobj::StandardRecordProxy duneanaobj::StandardRecordFlat)
