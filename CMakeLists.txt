@@ -27,14 +27,19 @@ file(
 )
 include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 
-option(duneanasel_USE_SRProxy "Whether to build proxy classes for Standard Record objects" OFF)
+option(duneanasel_USE_UPS_duneanaobj "Whether to build proxy classes for Standard Record objects" OFF)
+option(duneanasel_USE_SRProxy "Whether to build proxy classes for Standard Record objects" ON)
 option(duneanasel_SRProxy_PYTHON_ENABLED "Whether to build python bindings for proxy classes" OFF)
 
 find_package(ROOT 6 REQUIRED)
 
-find_package(duneanaobj QUIET)
+if(duneanasel_USE_UPS_duneanaobj) # use UPS by default
+  find_package(duneanaobj REQUIRED)
 
-if(NOT duneanasel_USE_SRProxy AND duneanaobj_FOUND AND TARGET duneanaobj::StandardRecordProxy) # use UPS by default
+  if(NOT TARGET duneanaobj::StandardRecordProxy)
+    message(FATAL_ERROR "duneanasel_USE_UPS_duneanaobj was specified but version of duneanaobj found didn't export target duneanaobj::StandardRecordProxy")
+  endif()
+
   message(STATUS "Found duneanaobj in ${duneanaobj_SOURCE}.")
   add_library(duneanaobj_all INTERFACE)
   target_link_libraries(duneanaobj_all INTERFACE duneanaobj::StandardRecordProxy duneanaobj::StandardRecordFlat)
@@ -44,7 +49,8 @@ if(NOT duneanasel_USE_SRProxy AND duneanaobj_FOUND AND TARGET duneanaobj::Standa
   target_include_directories(duneanaobj_all INTERFACE $ENV{SRPROXY_INC})
   add_library(duneanaobj::all ALIAS duneanaobj_all)
 elseif(duneanasel_USE_SRProxy)
-  if(NOT duneanaobj_FOUND)
+ find_package(duneanaobj QUIET)
+ if(NOT duneanaobj_FOUND)
     CPMFindPackage(
       NAME duneanaobj
       GIT_TAG feature/Clingification_rebase2024
