@@ -12,7 +12,7 @@ selections/observables package for DUNE ND and FD high-level analysis.
 
 *Design Choices:*
 * Make use of nested namespaces to scope generically named selection and projection functions: __e.g.__ `sel::beam::fd1x8x6::NuMuCCLike`.
-* Use SINFAE template-based type constraints to provide single functions that can take either `duneanaobj`ect instances or `caf::Proxy<T>` wrappers of instances.
+* Use SFINAE template-based type constraints to provide single functions that can take either `duneanaobj`ect instances or `caf::Proxy<T>` wrappers of instances.
 * Use unscoped enum types to identify events passing cuts for specific samples.
 * Provide a CMake build system capable of building the `duneanaobj` dependency without user intervention, under the expectation that `duneanaobj` changes much more slowly than development on the common tools package and so non-expert co-development of both package is infrequent.
 
